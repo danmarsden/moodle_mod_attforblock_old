@@ -23,6 +23,8 @@ class mod_attforblock_mod_form extends moodleform_mod {
         
         $mform->addElement('modgrade', 'grade', get_string('grade'));
         $mform->setDefault('grade', 100);
+	$mform->addElement('advcheckbox','num_percent', get_string('num_percent','attforblock'));
+	$mform->setDefault('num_percent',0);
 
 //-------------------------------------------------------------------------------
 

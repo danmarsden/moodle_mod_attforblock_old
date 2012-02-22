@@ -477,6 +477,9 @@ class attforblock {
     /** @var float number (10, 5) unsigned, the maximum grade for attendance */
     public $grade;
 
+/** new object for various grading */
+    public $num_percent;
+
     /** current page parameters */
     public $pageparams;
 
@@ -983,7 +986,7 @@ class attforblock {
 
         foreach ($userids as $userid) {
             $grades[$userid]->userid = $userid;
-            $grades[$userid]->rawgrade = att_calc_user_grade_percent($this->get_user_grade($userid), $this->get_user_max_grade($userid));
+            $grades[$userid]->rawgrade = att_calc_user_grade_percent($this->get_user_grade($userid), $this->get_user_max_grade($userid),$this->num_percent);
         }
 
         return grade_update('mod/attforblock', $this->course->id, 'mod', 'attforblock',
@@ -1229,7 +1232,8 @@ function att_get_user_courses_attendances($userid) {
     list($usql, $uparams) = $DB->get_in_or_equal(array_keys($usercourses), SQL_PARAMS_NAMED, 'cid0');
 
     $sql = "SELECT att.id as attid, att.course as courseid, course.fullname as coursefullname,
-                   course.startdate as coursestartdate, att.name as attname, att.grade as attgrade
+                   course.startdate as coursestartdate, att.name as 
+attname, att.grade as attgrade
               FROM {attforblock} att
               JOIN {course} course
                    ON att.course = course.id
@@ -1241,11 +1245,17 @@ function att_get_user_courses_attendances($userid) {
     return $DB->get_records_sql($sql, $params);
 }
 
-function att_calc_user_grade_percent($grade, $maxgrade) {
-    if ($maxgrade == 0)
+function att_calc_user_grade_percent($grade, $maxgrade, $num_percent) {
+	if ($maxgrade == 0)
         return 0;
-    else
-        return $grade / $maxgrade * 100;
+    	else
+	if ($num_percent==1) {
+	 return $grade;
+	}
+	else
+	{
+	 return $grade / $maxgrade * 100;
+	}
 }
 
 function att_update_all_users_grades($attid, $course, $context) {
