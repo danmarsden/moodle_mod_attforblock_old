@@ -326,6 +326,16 @@ function xmldb_attforblock_upgrade($oldversion=0) {
 
         upgrade_mod_savepoint(true, 2011061800, 'attforblock');
     }
+	 if ($oldversion < 2012011300)
+	{
+	$table = new xmldb_table('attforblock');
+        
+        $field = new xmldb_field('num_percent');
+        $field->set_attributes(XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0', 'grade');
+        $dbman->add_field($table, $field); 
+	
+	upgrade_mod_savepoint(true, 2012011300, 'attforblock');
+	}
     return $result;
 }
 
