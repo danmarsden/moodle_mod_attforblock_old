@@ -1224,6 +1224,13 @@ function att_get_user_max_grade($sesscount, $statuses) {
     return current($statuses)->grade * $sesscount;
 }
 
+function att_get_num_percent($att)
+{
+  global $DB;
+
+  return $DB->get_record_sql('SELECT num_percent FROM {attforblock} WHERE id=?',array($att));
+}
+
 function att_get_user_courses_attendances($userid) {
     global $DB;
 
@@ -1249,13 +1256,14 @@ function att_calc_user_grade_percent($grade, $maxgrade, $num_percent) {
 	if ($maxgrade == 0)
         return 0;
     	else
-	if ($num_percent==1) {
-	 return $grade;
-	}
-	else
-	{
-	 return $grade / $maxgrade * 100;
-	}
+		  if ($num_percent==1) 
+		  {
+			return $grade;
+		  }
+		  else
+		  {
+			return $grade / $maxgrade * 100;
+		  }
 }
 
 function att_update_all_users_grades($attid, $course, $context) {
@@ -1266,11 +1274,12 @@ function att_update_all_users_grades($attid, $course, $context) {
     $userids = array_keys(get_enrolled_users($context, 'mod/attforblock:canbelisted', 0, 'u.id'));
 
     $statuses = att_get_statuses($attid);
+	$num_percent=att_get_num_percent($attid);
     foreach ($userids as $userid) {
         $grades[$userid]->userid = $userid;
         $userstatusesstat = att_get_user_statuses_stat($attid, $course->startdate, $userid);
         $usertakensesscount = att_get_user_taken_sessions_count($attid, $course->startdate, $userid);
-        $grades[$userid]->rawgrade = att_calc_user_grade_percent(att_get_user_grade($userstatusesstat, $statuses), att_get_user_max_grade($usertakensesscount, $statuses));
+        $grades[$userid]->rawgrade = att_calc_user_grade_percent(att_get_user_grade($userstatusesstat, $statuses), att_get_user_max_grade($usertakensesscount, $statuses),$num_percent);
     }
 
     return grade_update('mod/attforblock', $course->id, 'mod', 'attforblock',
