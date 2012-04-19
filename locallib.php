@@ -1167,13 +1167,6 @@ class attforblock {
         $logurl = att_log_convert_url($url);
         add_to_log($this->course->id, 'attforblock', $action, $logurl, $info, $this->cm->id);
     }
-
-	function att_get_num_percent($id)
-	{
-	  global $DB;
-
-	  return $DB->get_record_sql('SELECT num_percent FROM {attforblock} WHERE id=?',array($id));
-	}
 }
 
 

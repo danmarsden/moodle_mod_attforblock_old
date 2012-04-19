@@ -490,7 +490,6 @@ class attforblock_preferences_data implements renderable {
 	public $num_percent;
 
     public function __construct(attforblock $att) {
-	  	  global $DB;
 	  
 	    $this->statuses = $att->get_statuses(false);
 
