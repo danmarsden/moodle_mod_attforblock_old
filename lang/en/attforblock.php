@@ -112,6 +112,7 @@ $string['nosessiondayselected'] = 'No Session day selected';
 $string['nosessionexists'] = 'No Session exists for this course';
 $string['nosessionsselected'] = 'No sessions selected';
 $string['notfound'] = 'Attendance activity not found in this course!';
+$string['num_percent'] = 'In gradebook visible as mark, not percent';
 $string['olddate'] = 'Old date';
 $string['period'] = 'Frequency';
 $string['pluginname'] = 'Attendance';

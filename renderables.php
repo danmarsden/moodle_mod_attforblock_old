@@ -487,18 +487,23 @@ class attforblock_preferences_data implements renderable {
 
     private $att;
 
+	public $num_percent;
+
     public function __construct(attforblock $att) {
-        $this->statuses = $att->get_statuses(false);
+	  
+	    $this->statuses = $att->get_statuses(false);
 
         foreach ($this->statuses as $st) $st->haslogs = att_has_logs_for_status ($st->id);
 
         $this->att = $att;
+		
+		$this->num_percent= $att->num_percent;
     }
 
     public function url($params=array(), $significant_params=TRUE) {
         if ($significant_params)
             $params = array_merge($this->att->pageparams->get_significant_params(), $params);
-
+	   
         return $this->att->url_preferences($params);
     }
 }

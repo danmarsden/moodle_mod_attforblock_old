@@ -74,11 +74,14 @@ switch ($att->pageparams->action) {
         $acronym 		= required_param('acronym', PARAM_MULTILANG);
         $description	= required_param('description', PARAM_MULTILANG);
         $grade			= required_param('grade', PARAM_INT);
-
+		$num_percent=optional_param('num_percent',0,PARAM_INT);
         foreach ($acronym as $id => $v) {
             $att->update_status($id, $acronym[$id], $description[$id], $grade[$id], null);
         }
-        att_update_all_users_grades($att->id, $att->course, $att->context);
+	
+		$att->num_percent=$num_percent;
+		$att->update_num_percent($att->id,$num_percent);
+        att_update_all_users_grades($att->id, $att->course, $att->context, $num_percent);
         break;
 }
 
