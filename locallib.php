@@ -1110,7 +1110,6 @@ class attforblock {
             print_error('cantaddstatus', 'attforblock', $this->url_preferences());
         }
     }
-
     public function update_status($statusid, $acronym, $description, $grade, $visible) {
         global $DB;
 
@@ -1139,6 +1138,16 @@ class attforblock {
         $this->log('status updated', $this->url_preferences(), implode(' ', $updated));
     }
 
+	public function update_num_percent($attid,$num_percent)
+	{
+	  global $DB;
+
+	  $status=new stdClass();
+	  $status->id=$attid;
+	  $status->num_percent=$num_percent;
+	  $DB->update_record('attforblock',$status);
+	}
+
     /**
      * wrapper around {@see add_to_log()}
      *
@@ -1158,6 +1167,13 @@ class attforblock {
         $logurl = att_log_convert_url($url);
         add_to_log($this->course->id, 'attforblock', $action, $logurl, $info, $this->cm->id);
     }
+
+	function att_get_num_percent($id)
+	{
+	  global $DB;
+
+	  return $DB->get_record_sql('SELECT num_percent FROM {attforblock} WHERE id=?',array($id));
+	}
 }
 
 
@@ -1224,13 +1240,6 @@ function att_get_user_max_grade($sesscount, $statuses) {
     return current($statuses)->grade * $sesscount;
 }
 
-function att_get_num_percent($att)
-{
-  global $DB;
-
-  return $DB->get_record_sql('SELECT num_percent FROM {attforblock} WHERE id=?',array($att));
-}
-
 function att_get_user_courses_attendances($userid) {
     global $DB;
 
@@ -1266,7 +1275,7 @@ function att_calc_user_grade_percent($grade, $maxgrade, $num_percent) {
 		  }
 }
 
-function att_update_all_users_grades($attid, $course, $context) {
+function att_update_all_users_grades($attid, $course, $context, $num_percent) {
     global $COURSE;
 
     $grades = array();
@@ -1274,7 +1283,6 @@ function att_update_all_users_grades($attid, $course, $context) {
     $userids = array_keys(get_enrolled_users($context, 'mod/attforblock:canbelisted', 0, 'u.id'));
 
     $statuses = att_get_statuses($attid);
-	$num_percent=att_get_num_percent($attid);
     foreach ($userids as $userid) {
         $grades[$userid]->userid = $userid;
         $userstatusesstat = att_get_user_statuses_stat($attid, $course->startdate, $userid);

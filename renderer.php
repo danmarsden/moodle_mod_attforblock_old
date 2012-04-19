@@ -720,8 +720,12 @@ class mod_attforblock_renderer extends plugin_renderer_base {
         $o = html_writer::tag('h1', get_string('myvariables','attforblock'));
         $o .= html_writer::table($table);
         $o .= html_writer::input_hidden_params($prefdata->url(array(), false));
+		$o .='<p style="text-align:left">&nbsp;';
+		$o .=html_writer::checkbox('num_percent',1,$prefdata->num_percent,get_string('num_percent','attforblock'));
+		$o .='</p>';
+//$o .=setDefault('num_percent',0);
         $o .= $this->construct_preferences_button(get_string('update', 'attforblock'), att_preferences_page_params::ACTION_SAVE);
-        $o = html_writer::tag('form', $o, array('id' => 'preferencesform', 'method' => 'post', 'action' => $prefdata->url(array(), false)->out_omit_querystring()));
+		$o = html_writer::tag('form', $o, array('id' => 'preferencesform', 'method' => 'post', 'action' => $prefdata->url(array(), false)->out_omit_querystring()));
         $o = $this->output->container($o, 'generalbox attwidth');
         
         return $o;
@@ -776,6 +780,7 @@ class mod_attforblock_renderer extends plugin_renderer_base {
                 'onclick'   => 'M.mod_attforblock.set_preferences_action('.$action.')');
         return html_writer::empty_tag('input', $attributes);
     }
+	
 
 }
 ?>
