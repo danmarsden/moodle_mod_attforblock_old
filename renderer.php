@@ -723,7 +723,6 @@ class mod_attforblock_renderer extends plugin_renderer_base {
 		$o .='<p style="text-align:left">&nbsp;';
 		$o .=html_writer::checkbox('num_percent',1,$prefdata->num_percent,get_string('num_percent','attforblock'));
 		$o .='</p>';
-//$o .=setDefault('num_percent',0);
         $o .= $this->construct_preferences_button(get_string('update', 'attforblock'), att_preferences_page_params::ACTION_SAVE);
 		$o = html_writer::tag('form', $o, array('id' => 'preferencesform', 'method' => 'post', 'action' => $prefdata->url(array(), false)->out_omit_querystring()));
         $o = $this->output->container($o, 'generalbox attwidth');

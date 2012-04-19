@@ -1241,8 +1241,7 @@ function att_get_user_courses_attendances($userid) {
     list($usql, $uparams) = $DB->get_in_or_equal(array_keys($usercourses), SQL_PARAMS_NAMED, 'cid0');
 
     $sql = "SELECT att.id as attid, att.course as courseid, course.fullname as coursefullname,
-                   course.startdate as coursestartdate, att.name as 
-attname, att.grade as attgrade
+                   course.startdate as coursestartdate, att.name as attname, att.grade as attgrade
               FROM {attforblock} att
               JOIN {course} course
                    ON att.course = course.id
