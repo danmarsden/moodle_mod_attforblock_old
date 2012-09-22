@@ -296,7 +296,7 @@ class att_page_with_filter_controls {
     }
     
     private function calc_sessgroupslist() {
-        global $PAGE;
+        global $PAGE, $USER;
         
         $this->sessgroupslist = array();
         $groupmode = groups_get_activity_groupmode($this->cm);
