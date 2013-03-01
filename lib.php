@@ -226,8 +226,9 @@ function attforblock_user_outline($course, $user, $mod, $attforblock) {
         $result->time = 0;
   	if (has_capability('mod/attforblock:canbelisted', $mod->context, $user->id)) {
         $statuses = att_get_statuses($attforblock->id);
-        $grade = att_get_user_grade(get_user_statuses_stat($attforblock->id, $course->startdate, $user->id), $statuses);
-        $maxgrade = att_get_user_max_grade(get_user_taken_sessions_count($attforblock->id, $course->startdate, $user->id), $statuses);
+        $att = new attforblock($attforblock, $mod, $course);
+        $grade = att_get_user_grade($att->get_user_statuses_stat($attforblock->id, $course->startdate, $user->id), $statuses);
+        $maxgrade = att_get_user_max_grade(get_user_taken_sessions_count($att->$attforblock->id, $course->startdate, $user->id), $statuses);
 
         $result->info = $grade.' / '.$maxgrade;
   	}
@@ -420,13 +421,30 @@ function attforblock_get_participants($attforblockid) {
     return false;
 }
 
+/**
+ * This function returns if a scale is being used by one attendance
+ * it it has support for grading and scales. Commented code should be
+ * modified if necessary. See book, glossary or journal modules
+ * as reference.
+ *
+ * @param int $attforblockid
+ * @param int $scaleid
+ * @return boolean True if the scale is used by any attendance
+ */
 function attforblock_scale_used ($attforblockid, $scaleid) {
-//This function returns if a scale is being used by one attforblock
-//it it has support for grading and scales. Commented code should be
-//modified if necessary. See forum, glossary or journal modules
-//as reference.
-   
-    $return = false;
+    return false;
+}
+
+/**
+ * Checks if scale is being used by any instance of attendance
+ *
+ * This is used to find out if scale used anywhere
+ *
+ * @param int $scaleid
+ * @return bool true if the scale is used by any book
+ */
+function attforblock_scale_used_anywhere($scaleid) {
+    return false;
 }
 
 /**
