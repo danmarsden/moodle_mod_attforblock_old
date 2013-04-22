@@ -174,7 +174,7 @@ $string['variable'] = 'Variable';
 $string['variablesupdated'] = 'Variables mises à jour';
 $string['versionforprinting'] = 'Version pour impression';
 $string['viewmode'] = 'Mode d\'affichage';
-$string['week'] = 'Ssemaine';
+$string['week'] = 'Semaine';
 $string['weeks'] = 'Semaines';
 $string['youcantdo'] = 'Vous ne pouvez rien faire';
 ?>
