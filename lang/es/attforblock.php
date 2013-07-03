@@ -1,4 +1,4 @@
-<?PHP // $Id: attforblock.php,v 1.5 2009/08/08 12:39:52 barias Exp $ 
+<?PHP // $Id: attforblock.php,v 1.5 2009/08/08 12:39:52 barias Exp $
       // attforblock.php - created with Moodle 1.9.3+ (Build: 20081126) (2007101532)
 
 
@@ -34,10 +34,10 @@ $string['attforblock:view'] = 'Ver Asistencias';
 $string['attforblock:viewreports'] = 'Ver Informes';
 $string['attrecords'] = 'Asistencias tomadas';
 $string['calclose'] = 'Cerrar';
-$string['calmonths'] = '\"Enero\", \"Febrero\", \"Marzo\", \"Abril\", \"Mayo\", \"Junio\", \"Julio\", \"Agosto\", \"Septiembre\", \"Octubre\", \"Noviembre\", \"Diciembre\"';
+$string['calmonths'] = 'Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre';
 $string['calshow'] = 'Seleccione fecha';
 $string['caltoday'] = 'Hoy';
-$string['calweekdays'] = '\"Do\", \"Lu\", \"Ma\", \"Mi\", \"Ju\", \"Vi\", \"Sá\"';
+$string['calweekdays'] = 'Do,Lu,Ma,Mi,Ju,Vi,Sá';
 $string['changeduration'] = 'Cambiar duración';
 $string['changesession'] = 'Cambiar Sesión';
 $string['column'] = 'columna';
@@ -79,7 +79,7 @@ $string['includeall'] = 'Seleccionar todas las sesiones';
 $string['includenottaken'] = 'Incluir sesiones no registradas';
 $string['indetail'] = 'En detalle...';
 $string['jumpto'] = 'Saltar a';
-$string['moduledescription'] = 'Sólo se puede agregar una actividad \"Asistencia\" por curso.<br>Si se elimina esta actividad, los datos de la base de datos no se verán afectados, así que reaparecerán en caso de volver a agregar nuevamente la actividad.';
+$string['moduledescription'] = 'Sólo se puede agregar una actividad "Asistencia" por curso.<br>Si se elimina esta actividad, los datos de la base de datos no se verán afectados, así que reaparecerán en caso de volver a agregar nuevamente la actividad.';
 $string['modulename'] = 'Asistencia';
 $string['modulenameplural'] = 'Asistencias';
 $string['months'] = 'Mensual';
